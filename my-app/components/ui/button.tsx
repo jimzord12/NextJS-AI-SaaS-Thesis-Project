@@ -44,6 +44,13 @@ export interface ButtonProps
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, asChild = false, ...props }, ref) => {
+    if (asChild && props.type === "button") {
+      console.error(
+        "Button component with `asChild` prop should not be of type `button`."
+      );
+      return null;
+    }
+
     const Comp = asChild ? Slot : "button";
     return (
       <Comp
