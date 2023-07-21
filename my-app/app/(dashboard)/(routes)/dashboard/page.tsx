@@ -58,7 +58,7 @@ export default function DashboardPage() {
         <h2 className="text-amber-300 text-2xl md:text-4xl font-bold text-center">
           Explore the power of AI
         </h2>
-        <p className="text-muted-foreground font-light text-amber-200 text-sm md:text-lg text-center">
+        <p className="font-light text-amber-200 text-sm md:text-lg text-center">
           Chat with the smartest AI - Experience the Power of AI
         </p>
       </div>

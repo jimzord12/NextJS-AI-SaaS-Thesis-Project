@@ -25,7 +25,7 @@ const Heading = ({
         </div>
         <div>
           <h2 className="text-3xl font-bold text-amber-300">{title}</h2>
-          <p className="text-sm text-muted-foreground  text-amber-200">
+          <p className="text-sm text-amber-200">
             {describtion}
           </p>
         </div>
