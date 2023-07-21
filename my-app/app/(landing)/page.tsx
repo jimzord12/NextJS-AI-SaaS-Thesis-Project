@@ -17,6 +17,11 @@ export default function LandingPage() {
             <Button>Here, Register is</Button>
           </Link>
         </div>
+        <div className="">
+          <Link href="/dashboard">
+            <Button>Dashboard!</Button>
+          </Link>
+        </div>
       </div>
     </main>
   );

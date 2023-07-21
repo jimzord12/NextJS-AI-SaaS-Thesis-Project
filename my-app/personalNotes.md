@@ -79,3 +79,9 @@ This methods escapes the hydration error by making both server & client initial 
 ```
 <div (type here twcn...)>
 ```
+
+## Youtube Comment Issues (❌)
+
+### 1. Input-Ring-styles (1:37:45 - 1:38:25):
+
+1. Fix: Got to components/ui/input.tsx -> and remove the "focus-visible:ring-2" utility class

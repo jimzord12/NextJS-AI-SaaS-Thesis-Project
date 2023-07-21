@@ -6,7 +6,7 @@ import UserInfo from "./UserInfo";
 const Navbar = () => {
   return (
     <div className="flex items-center p-4 bg-sky-500 min-h-[95px] rounded-b-2xl drop-shadow-xl">
-      <h2 className="hidden lg:inline lg:ml-[350px]  text-3xl text-white">
+      <h2 className="hidden lg:inline not-mobile  text-3xl text-white">
         This is the Navigation Bar!
       </h2>
       <MobileSidebar />

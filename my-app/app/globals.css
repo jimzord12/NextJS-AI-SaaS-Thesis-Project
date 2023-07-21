@@ -6,6 +6,7 @@ hmtl,
 body,
 :root {
   height: 100%;
+  box-sizing: border-box;
 }
 
 @layer base {
@@ -81,4 +82,48 @@ body,
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.not-mobile {
+  @apply lg:ml-[350px];
+}
+
+/* Hides Scrollbar but allows scrolling */
+.hide-scrollbar::-webkit-scrollbar {
+  width: 0;
+  background: transparent; /* Optional: Make scrollbar transparent */
+}
+
+/* Keyframes for our animation */
+@keyframes scaleThenSkew {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5); /* You can adjust the scale value */
+  }
+  100% {
+    transform: scale(1.5) skewX(20deg); /* Adjust skew value as needed */
+  }
+}
+
+/* .send-animation {
+  transform: scale(1);
+  transition: transform 0.5s ease-out; 
+}
+
+
+.send-animation:hover {
+  animation: scaleThenSkew 1.5s forwards; 
+} */
+
+/* Initial state of the Send component */
+.send-animation {
+  transform: scale(1);
+  transition: transform 1.5s;
+}
+
+/* When the Button is hovered, only the Send component inside it will animate */
+.send-btn:hover .send-animation {
+  transform: scale(1.5) skewX(20deg);
 }
