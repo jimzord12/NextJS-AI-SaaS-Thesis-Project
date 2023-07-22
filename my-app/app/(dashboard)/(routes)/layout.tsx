@@ -12,7 +12,7 @@ const DashboardLayout = ({ children }: reactChildrenForProps) => {
         <UserInfo />
         <Sidebar />
       </div>
-      <main>
+      <main className="bg-rose-900">
         <Navbar />
         {children}
       </main>

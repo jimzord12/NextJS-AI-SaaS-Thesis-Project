@@ -26,6 +26,10 @@ const buttonVariants = cva(
         superLg: "h-16 rounded-md px-8",
         icon: "h-10 w-10",
       },
+      hover: {
+        true: "hover:bg-amber-500",
+        false: "",
+      },
     },
     defaultVariants: {
       variant: "default",
@@ -40,10 +44,14 @@ export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean;
+  hover?: boolean;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
+  (
+    { className, variant, size, hover = false, asChild = false, ...props },
+    ref
+  ) => {
     if (asChild && props.type === "button") {
       console.error(
         "Button component with `asChild` prop should not be of type `button`."
@@ -54,7 +62,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const Comp = asChild ? Slot : "button";
     return (
       <Comp
-        className={cn(buttonVariants({ variant, size, className }))}
+        className={cn(buttonVariants({ variant, size, hover, className }))}
         ref={ref}
         {...props}
       />

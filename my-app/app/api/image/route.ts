@@ -10,13 +10,10 @@ const openai = new OpenAIApi(configuration);
 
 export async function POST(req: Request) {
   try {
-    console.log("🧪 0. Request: ", req);
-    console.log("🧪 1. Api Key: ", process.env.OPENAI_API_KEY);
     const { userId } = auth();
     const body = await req.json();
-    console.log("🧪 2. The body: ", body);
 
-    const { messages } = body;
+    const { prompt, amount = 1, resolution = "512x512" } = body;
 
     if (!userId) {
       return new NextResponse("Unauthorized", { status: 401 });
@@ -26,20 +23,29 @@ export async function POST(req: Request) {
       return new NextResponse("OpenAI API Key not configured", { status: 500 });
     }
 
-    if (!messages) {
-      return new NextResponse("Messages are required!", { status: 400 });
+    if (!prompt) {
+      return new NextResponse("Prompt are required!", { status: 400 });
     }
 
-    const response = await openai.createChatCompletion({
-      model: "gpt-3.5-turbo",
-      messages,
+    if (!amount) {
+      return new NextResponse("Amount are required!", { status: 400 });
+    }
+
+    if (!resolution) {
+      return new NextResponse("Resolution are required!", { status: 400 });
+    }
+
+    const response = await openai.createImage({
+      prompt,
+      n: parseInt(amount, 10),
+      size: resolution,
     });
 
     console.log("🧪 3. OpenAI response:", response);
 
-    return NextResponse.json(response.data.choices[0].message);
+    return NextResponse.json(response.data.data);
   } catch (error) {
-    console.error("❌ (route.ts) [API_CONVERSATION_ERROR]: ", error);
+    console.error("❌ (route.ts) [API_IMAGE_ERROR]: ", error);
     return new NextResponse("Internal Error", { status: 500 });
   }
 }
