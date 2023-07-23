@@ -11,6 +11,8 @@ import * as z from "zod";
 import { formSchema } from "./formSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
+import { toast } from "react-hot-toast";
+
 
 const CodePage = () => {
   const [messages, setMessages] = useState(
@@ -47,6 +49,8 @@ const CodePage = () => {
       form.reset();
     } catch (error: any) {
       console.log("⛔ [API_CONVERSATION_ERROR]: ", error);
+      toast.error("Something went wrong");
+
     } finally {
       router.refresh();
     }

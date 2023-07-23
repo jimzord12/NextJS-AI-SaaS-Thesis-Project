@@ -12,6 +12,8 @@ import Heading from "@/components/myComps/Heading";
 import PromptArea from "@/components/myComps/PromptArea";
 import { Music } from "lucide-react";
 import { formSchema } from "./formSchema";
+import { toast } from "react-hot-toast";
+
 
 const MusicPage = () => {
   const [music, setMusic] = useState<string | undefined>("");
@@ -36,6 +38,8 @@ const MusicPage = () => {
       form.reset();
     } catch (error: any) {
       console.log("⛔ [API_MUSIC_ERROR]: ", error);
+      toast.error("Something went wrong");
+
     } finally {
       router.refresh();
     }

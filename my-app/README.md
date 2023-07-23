@@ -1,5 +1,20 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Technologies
+
+1. Next.js
+2. TypeScript.
+3. Tailwind CSS
+4. Shadcn/ui (Modern UI Components Library)
+5. Clerk (User Authentication) - [Its a Service, not Lib]
+6. Form Creation using: "react-hook-form" and "zod"
+7. OpenAI SDK
+8. Replicate AI SDK
+9. Prisma (ORM)
+10. Planet Scale (Database Service Provider) - [Good Free Tier]
+
+## Adapted from: https://github.com/AntonioErdeljac/next13-ai-saas
+
 ## Getting Started
 
 First, run the development server:

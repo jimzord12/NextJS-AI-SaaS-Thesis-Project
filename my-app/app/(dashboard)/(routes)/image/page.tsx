@@ -11,6 +11,7 @@ import { ImageIcon } from "lucide-react";
 import Heading from "@/components/myComps/Heading";
 import PromptArea from "@/components/myComps/PromptArea";
 import { resolutionOptions, amountOptions, formSchema } from "./formSchema";
+import { toast } from "react-hot-toast";
 
 const ImagePage = () => {
   const [images, setImages] = useState([] as string[]);
@@ -40,6 +41,7 @@ const ImagePage = () => {
       form.reset();
     } catch (error: any) {
       console.log("⛔ [API_CONVERSATION_ERROR]: ", error);
+      toast.error("Something went wrong");
     } finally {
       router.refresh();
     }

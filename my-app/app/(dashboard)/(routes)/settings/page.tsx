@@ -1,21 +1,20 @@
 "use client";
 
 import React, { useState } from "react";
-import * as z from "zod";
-import axios from "axios";
-
-import { useRouter } from "next/navigation";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { ChatCompletionRequestMessage } from "openai";
-
 import Heading from "@/components/myComps/Heading";
+import { Settings } from "lucide-react";
 import PromptArea from "@/components/myComps/PromptArea";
-import { MessageSquare } from "lucide-react";
+import { ChatCompletionRequestMessage } from "openai";
+import { useForm } from "react-hook-form";
+import axios from "axios";
+import * as z from "zod";
 import { formSchema } from "./formSchema";
-import { toast } from "react-hot-toast";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
+import Empty from "@/components/myComps/Empty";
+import Image from "next/image";
 
-const ConversationPage = () => {
+const SettingsPage = () => {
   const [messages, setMessages] = useState(
     [] as ChatCompletionRequestMessage[]
   );
@@ -42,15 +41,14 @@ const ConversationPage = () => {
       };
       const newMessages = [...messages, userMessage];
 
-      const responce = await axios.post("/api/conversation", {
+      const responce = await axios.post("/api/code", {
         messages: newMessages,
       });
       setMessages((current) => [...current, userMessage, responce.data]);
 
       form.reset();
     } catch (error: any) {
-      console.log("⛔ [API_CONVERSATION_ERROR]: ", error);
-      toast.error("Something went wrong");
+      console.log("⛔ [API_SETTINGS_ERROR]: ", error);
     } finally {
       router.refresh();
     }
@@ -59,22 +57,26 @@ const ConversationPage = () => {
   return (
     <main className="not-mobile h-full">
       <Heading
-        title="Conversation"
-        describtion="OpenAI's most powerful AI conversation model. ChatGPT-3.5 Turbo"
-        icon={MessageSquare}
-        iconColor="text-violet-500"
-        bgColor="bg-violet-500/20"
+        title="Settings (Under Developement 👨‍💻)"
+        describtion="In the future more features can be added here."
+        icon={Settings}
+        iconColor="text-stone-300"
+        bgColor="bg-stone-500/20"
       />
-      <PromptArea
-        type="conversation"
-        placeholder="Example: Explain, in simple terms, the difference between a SQL and a non-SQL database."
+      <Empty
+        label="Thank you for evaluating my Application."
+        isSettings={true}
+      />
+      {/* <PromptArea
+        type="code"
+        placeholder="Example: Create a CSS animation that upon hover, it will scale the specified HTML element by a little."
         handleSubmit={onSubmit}
         isLoading={isLoading}
         form={form}
         AIresponses={messages}
-      />
+      /> */}
     </main>
   );
 };
 
-export default ConversationPage;
+export default SettingsPage;
