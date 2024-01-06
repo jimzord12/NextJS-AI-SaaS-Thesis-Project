@@ -35,7 +35,7 @@ const LandingHero = () => {
         Become x10 more productive by utilizing the power of AI.
       </div>
       <div>
-        <Link href={isSignedIn ? "/dashboard" : "/sing-up"}>
+        <Link href={isSignedIn ? "/dashboard" : "/sign-up"}>
           <Button
             variant="hero"
             size="superLg"

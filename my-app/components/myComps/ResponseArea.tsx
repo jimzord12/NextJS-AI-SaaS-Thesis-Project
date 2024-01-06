@@ -41,7 +41,7 @@ const ResponseArea = ({
         </div>
       )}
       {promptResponceArr.length === 0 && !isLoading && (
-        <Empty label="No Available Responses" />
+        <Empty label="No Available Responses" isSettings={false} />
       )}
       {/* CONVERSATION or CODE */}
       {(type === features.conversation || type === features.code) && (
