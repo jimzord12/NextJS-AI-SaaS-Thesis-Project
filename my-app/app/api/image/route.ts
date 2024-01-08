@@ -1,12 +1,17 @@
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
-import { Configuration, OpenAIApi } from "openai";
+// import { Configuration, OpenAIApi } from "openai";
+import OpenAI from "openai";
 
-const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
+// const configuration = new Configuration({
+//   apiKey: process.env.OPENAI_API_KEY,
+// });
+
+// const openai = new OpenAIApi(configuration);
+
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY, // This is also the default, can be omitted
 });
-
-const openai = new OpenAIApi(configuration);
 
 export async function POST(req: Request) {
   try {
@@ -19,7 +24,7 @@ export async function POST(req: Request) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
 
-    if (!configuration.apiKey) {
+    if (!process.env.OPENAI_API_KEY) {
       return new NextResponse("OpenAI API Key not configured", { status: 500 });
     }
 
@@ -35,7 +40,8 @@ export async function POST(req: Request) {
       return new NextResponse("Resolution are required!", { status: 400 });
     }
 
-    const response = await openai.createImage({
+    const response = await openai.images.generate({
+      model: "dall-e-2",
       prompt,
       n: parseInt(amount, 10),
       size: resolution,
@@ -43,7 +49,7 @@ export async function POST(req: Request) {
 
     console.log("🧪 3. OpenAI response:", response);
 
-    return NextResponse.json(response.data.data);
+    return NextResponse.json(response.data);
   } catch (error) {
     console.error("❌ (route.ts) [API_IMAGE_ERROR]: ", error);
     return new NextResponse("Internal Error", { status: 500 });

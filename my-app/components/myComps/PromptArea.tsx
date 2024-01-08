@@ -5,7 +5,7 @@ import axios from "axios";
 import * as z from "zod";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ChatCompletionRequestMessage } from "openai";
+import ChatCompletionRequestMessage from "openai";
 
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";

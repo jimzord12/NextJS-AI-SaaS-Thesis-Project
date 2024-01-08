@@ -7,7 +7,8 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { ChatCompletionRequestMessage } from "openai";
+// import { ChatCompletionRequestMessage } from "openai";
+import ChatCompletionRequestMessage from "openai";
 
 import Heading from "@/components/myComps/Heading";
 import PromptArea from "@/components/myComps/PromptArea";
@@ -36,7 +37,7 @@ const ConversationPage = () => {
     );
     console.log(values);
     try {
-      const userMessage: ChatCompletionRequestMessage = {
+      const userMessage: any = {
         role: "user",
         content: values.prompt,
       };
